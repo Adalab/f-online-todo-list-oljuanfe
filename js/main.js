@@ -10,17 +10,19 @@ const dayOfWeek = today.getUTCDay();
 console.log('hoy', today, day, month, year, dayOfWeek);
 
 // selectores botones
+const dateWrapper = document.getElementById('date-wrapper');
 const displayModal = document.getElementById('display-modal-button');
 const addTask = document.getElementById('add-task');
 const toDoList = document.getElementById('toDoList');
 const modal = document.getElementById('modal');
 const toDoTask = document.getElementById('to-do-task');
-console.log('task', toDoTask);
 
 let newTaskContent;
 let allTasksToDo = [];
 
 
+
+dateWrapper.innerHTML = day + ' ' + month + ' ' + year;
 // Enseñar modal
 function showModal() {
   modal.classList.remove('hidden');
@@ -33,7 +35,6 @@ function addNewTask() {
   toDoTask.value = '';
   console.log('añadiendo nueva tarea');
   addListenersToChecboxes();
-  
 }
 
 // Crear nueva tarea
@@ -47,7 +48,6 @@ function createNewTask() {
   newLabel.append(newCheckbox,newContentLabel);
   newItem.appendChild(newLabel);
   console.log('creando componente tarea');
-  
   return newItem;
 }
 
@@ -59,17 +59,20 @@ function addNewTaskContent(event) {
   console.log('contenid', newTaskContent);
 }
 
-// Manejo checkboxes
+// Manejo checkboxes, despues evento
 function handleCheckboxes() {
-  console.log('clickando');
-  console.log(event.target.checked);
   event.target.checked;
   console.log(event);
-  event.target.checked ? event.target.parentElement.style.textDecoration = 'line-through':'';
+  event.target.parentElement.classList.toggle('task-done');
+  console.log('todas tareas', allTasksToDo);
+  for (const task of allTasksToDo) {
+    if (event.currentTarget.nextSibling.data === task.task) {
+      event.target.checked ? task.isDone = true : task.isDone = false;
+    }
+  }
+  console.log('toditas las tareas', allTasksToDo);
   
 }
-
-
 
 // Listener boton
 displayModal.addEventListener('click', showModal);
@@ -92,6 +95,7 @@ function addListenersToChecboxes() {
     console.log('parent', checkbox.parentElement.lastChild);
     individualTask = {
       task: checkbox.nextSibling.data,
+      isDone: false
     };
     console.log('individualtask', individualTask);
   }

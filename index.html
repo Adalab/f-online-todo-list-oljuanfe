@@ -1,32 +1,34 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 	<meta charset="UTF-8">
 	<title>Prueba técnica 6</title>
 	<link rel="stylesheet" href="css/main.css">
 </head>
-<body>
-	<header>
-		<img src="/images/logo-adalab-80px.png" alt="adalab-logo" title="Logo Adalab">
-		<div class="" id="date-wrapper"></div>
-	</header>
-	<main id="main" class="main">
-		<ul id="toDoList" class="to-do-list"></ul>
-		<div id="modal" class="hidden">
-			<label for="to-do-task">Nueva tarea</label>
-			<input type="text" name="to-do-task" id="to-do-task">
-			<button id="add-task" class="add-task">Añadir</button>
-		</div>
-	</main>
-	<footer>
-		<button id="display-modal-button" class="display-modal-button" title="Añadir tarea">
-			+
-		</button>
-	</footer>
-		<script 
-		type="text/javascript" 
-		src="js/main.js"
-	>
+
+<body class="body">
+	<div class="wrapper">
+		<header class="header">
+			<img src="/images/adalab-logo.png" alt="adalab-logo" title="Logo Adalab">
+			<div class="date-wrapper" id="date-wrapper"></div>
+		</header>
+		<main id="main" class="main">
+			<ul id="toDoList" class="to-do-list"></ul>
+			<div id="modal" class="hidden">
+				<label for="to-do-task">Nueva tarea</label>
+				<input type="text" name="to-do-task" id="to-do-task">
+				<button id="add-task" class="add-task">Añadir</button>
+			</div>
+		</main>
+		<footer class="footer">
+			<button id="display-modal-button" class="display-modal-button" title="Añadir tarea">
+				+
+			</button>
+		</footer>
+	</div>
+	<script type="text/javascript" src="js/main.js">
 	</script>
 </body>
+
 </html>
