@@ -2,6 +2,7 @@
 	box-sizing: border-box;
 	padding: 0;
 	margin: 0;
+	color: #5a5e61;
 	// border: 1px solid black;
 }
 
@@ -31,6 +32,7 @@ ul {
 .header {
 	width: 100%;
 	height: 75px;
+	margin-bottom: 25px;
 	padding-left: 23px;
 	padding-right: 23px;
 	display: flex;
@@ -51,9 +53,62 @@ ul {
 
 .main {
 	width: 100%;
+	padding-left: 20px;
 	flex-grow: 1;
-	text-align: center;
 	position: relative;
+}
+
+.to-do-list-item {
+	margin-bottom: 18px;
+}
+
+.task-done {
+	color: #b7b6b8;
+	text-decoration: line-through;
+}
+
+.checkbox-label {
+	position: relative;
+	cursor: pointer;
+}
+
+input[type=checkbox] {
+	appearance: none;
+	width: 25px;
+	height: 25px;
+	margin-right: 15px;
+	vertical-align: middle;
+	color: #00ae95;
+	background-color: #ffffff;
+	border: 2px solid #00e3c3;
+	border-radius: 100%;
+	outline: none;
+	cursor: pointer;
+	&:checked {
+		border: 2px solid #00ae95;
+	}
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.checkmark:after {
+  left: 9px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid #00ae95;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 .modal {
@@ -96,6 +151,7 @@ ul {
 	background-color: #00a48c;
 	border: 2px solid #fff;
 	border-radius: 22px;
+	cursor: pointer;
 }
 
 .footer {
