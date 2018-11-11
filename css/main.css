@@ -33,6 +33,7 @@ ul {
 
 .wrapper {
   width: 50%;
+  max-width: 305px;
   height: 70%;
   display: -webkit-box;
   display: -ms-flexbox;
