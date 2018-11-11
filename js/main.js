@@ -45,7 +45,6 @@ function addNewTask() {
   modal.classList.add('hidden');
   if (toDoTask.value !== '') {
     toDoList.appendChild(createNewTask());
-    
   }
   console.log('añadiendo nueva tarea');
   addFunctionalityToChecboxes();
@@ -87,6 +86,7 @@ function handleCheckboxes() {
       event.target.checked ? task.isDone = true : task.isDone = false;
     }
   }
+  sortTasks();
   console.log('toditas las tareas', allTasksToDo);
 }
 
@@ -98,7 +98,7 @@ function addFunctionalityToChecboxes() {
   console.log(checkboxes);
   for (const checkbox of checkboxes) {
     checkbox.addEventListener('click', handleCheckboxes);
-    console.log('checkboc',checkbox);
+    console.log('checkbox',checkbox);
     individualTask = {
       task: checkbox.parentElement.lastChild.data,
       isDone: false
@@ -114,8 +114,36 @@ function addFunctionalityToChecboxes() {
 
 // Ordenar tareas
 function sortTasks() {
-  console.log('ordenando');
+  // console.log('ordenando');
+  // console.log('alltask', allTasksToDo);
+  // const doneTasks = allTasksToDo.filter((task) => task.isDone);
+  // const undoneTasks = allTasksToDo.filter((task) => !task.isDone);
+  // allTasksToDo = undoneTasks.concat(doneTasks);
+  // console.log('done', doneTasks);
+  // console.log('undone', undoneTasks);
+  // console.log('alltask', allTasksToDo);
+  // displayReorderTasks();
+  console.log('todolist', toDoList);
+  const itemToDo = document.querySelectorAll('.to-do-list-item');
+  let changeItems = Array.from(itemToDo);
+  console.log(changeItems);
+  const doneTasks = changeItems.filter((item) => item.firstElementChild.classList.value.includes('task-done'));
+  const undoneTasks = changeItems.filter((item) => item.firstElementChild.classList.value.includes('task-done'));
+  changeItems = undoneTasks.concat(doneTasks);
+  console.log('undone', undoneTasks);
+  console.log('alltask', allTasksToDo);
+  console.log('done', doneTasks);
+  console.log(changeItems);
+  displayReorderTasks(changeItems);
+}
 
+// Pintar tareas ordenadas
+function displayReorderTasks(changeItems) {
+  
+  for (const task of changeItems) {
+    toDoList.appendChild(task);
+  }
+  
 }
 
 // Listener boton
