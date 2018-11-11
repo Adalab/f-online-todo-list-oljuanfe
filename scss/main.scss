@@ -105,9 +105,10 @@ input[type=checkbox] {
 	border-radius: 100%;
 	outline: none;
 	cursor: pointer;
-	&:checked {
-		border: 2px solid #00ae95;
-	}
+}
+
+.task-done input[type=checkbox] {
+	border: 2px solid #00ae95;
 }
 
 .checkmark:after {
@@ -116,11 +117,8 @@ input[type=checkbox] {
   display: none;
 }
 
-input:checked ~ .checkmark:after {
-  display: block;
-}
-
-.checkmark:after {
+.task-done .checkmark:after {
+	display: block;
   left: 9px;
   top: 2px;
   width: 5px;
