@@ -3,6 +3,7 @@
 	padding: 0;
 	margin: 0;
 	color: #5a5e61;
+	font-family: 'Roboto', sans-serif;
 	// border: 1px solid black;
 }
 
@@ -48,7 +49,27 @@ ul {
 }
 
 .date-wrapper {
-	
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.day-wrapper {
+	height: 100%;
+	color: #00ae95;
+	font-size: 30px;
+	font-weight: 900;
+}
+
+.date {
+	display: flex;
+	flex-direction: column;
+	padding-left: 9px;
+	font-size: 14px;
+}
+
+.week-day {
+	font-weight: 900;
 }
 
 .main {
@@ -171,7 +192,7 @@ input:checked ~ .checkmark:after {
 	border: 3px solid #00e3c3;
 	border-radius: 100%;
 	font-size: 50px;
-	font-weight: 900;
+	font-weight:500;
 	line-height: 1;
 	cursor: pointer;
 }

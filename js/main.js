@@ -3,7 +3,7 @@
 console.log('>> Ready :)');
 
 // selectores elementos
-const dateWrapper = document.getElementById('date-wrapper');
+// const dateWrapper = document.getElementById('date-wrapper');
 const dayOfMonth = document.getElementById('day');
 const dayFromWeek = document.getElementById('week-day');
 const monthYear = document.getElementById('month-year');
@@ -37,15 +37,20 @@ monthYear.innerHTML = monthString[month] + ', ' + year;
 // Enseñar modal
 function showModal() {
   modal.classList.remove('hidden');
+  console.log('enseñando modal');
 }
 
 // Añadir nueva tarea
 function addNewTask() {
   modal.classList.add('hidden');
-  toDoList.appendChild(createNewTask());
-  toDoTask.value = '';
+  if (toDoTask.value !== '') {
+    toDoList.appendChild(createNewTask());
+    
+  }
   console.log('añadiendo nueva tarea');
-  addListenersToChecboxes();
+  addFunctionalityToChecboxes();
+  toDoTask.value = '';
+  newTaskContent = '';
 }
 
 // Crear nueva tarea
@@ -68,25 +73,49 @@ function createNewTask() {
 
 // Contenido nueva tarea
 function addNewTaskContent(event) {
-  console.log('añadiendo contenido');
-  console.log('value', event.target.value);
   newTaskContent = event.target.value;
-  console.log('contenid', newTaskContent);
 }
 
 // Manejo checkboxes, despues evento
 function handleCheckboxes() {
+  console.log('event', event);
   event.target.checked;
-  console.log(event);
   event.target.parentElement.classList.toggle('task-done');
   console.log('todas tareas', allTasksToDo);
   for (const task of allTasksToDo) {
-    if (event.currentTarget.nextSibling.data === task.task) {
+    if (event.currentTarget.parentElement.lastChild.data === task.task) {
       event.target.checked ? task.isDone = true : task.isDone = false;
     }
   }
   console.log('toditas las tareas', allTasksToDo);
-  
+}
+
+// Añadir listeners a los checkboxes y manejar la lista de tareas que hacer
+function addFunctionalityToChecboxes() {
+  // Listenr Checkboxes
+  const checkboxes = document.getElementsByClassName('checkbox');
+  let individualTask;
+  console.log(checkboxes);
+  for (const checkbox of checkboxes) {
+    checkbox.addEventListener('click', handleCheckboxes);
+    console.log('checkboc',checkbox);
+    individualTask = {
+      task: checkbox.parentElement.lastChild.data,
+      isDone: false
+    };
+    console.log('individualtask', individualTask);
+    console.log('individualtask', individualTask);
+  }
+  allTasksToDo.push(individualTask);
+  console.log('allTasksToDo', allTasksToDo);
+  sortTasks();
+  console.log('ordenadas', allTasksToDo);
+}
+
+// Ordenar tareas
+function sortTasks() {
+  console.log('ordenando');
+
 }
 
 // Listener boton
@@ -98,22 +127,3 @@ toDoTask.addEventListener('change', addNewTaskContent);
 // Listener para pintar nueva tarea
 addTask.addEventListener('click', addNewTask);
 // addTask.addEventListener('enter', addNewTask);
-
-// Añadir listeners a los checkboxes y manejar la lista de tareas que hacer
-function addListenersToChecboxes() {
-  // Listener Checkboxes
-  const checkboxes = document.getElementsByClassName('checkbox');
-  console.log(checkboxes);
-  let individualTask;
-  for (const checkbox of checkboxes) {
-    checkbox.addEventListener('click', handleCheckboxes);
-    console.log('parent', checkbox.parentElement.lastChild);
-    individualTask = {
-      task: checkbox.nextSibling.data,
-      isDone: false
-    };
-    console.log('individualtask', individualTask);
-  }
-  allTasksToDo.push(individualTask);
-  console.log('allTasksToDo', allTasksToDo);
-}
