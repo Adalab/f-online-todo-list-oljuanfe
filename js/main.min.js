@@ -114,21 +114,18 @@ function addFunctionalityToChecboxes() {
 
 // Ordenar tareas
 function sortTasks() {
-  // console.log('ordenando');
-  // console.log('alltask', allTasksToDo);
-  // const doneTasks = allTasksToDo.filter((task) => task.isDone);
-  // const undoneTasks = allTasksToDo.filter((task) => !task.isDone);
-  // allTasksToDo = undoneTasks.concat(doneTasks);
-  // console.log('done', doneTasks);
-  // console.log('undone', undoneTasks);
-  // console.log('alltask', allTasksToDo);
-  // displayReorderTasks();
   console.log('todolist', toDoList);
   const itemToDo = document.querySelectorAll('.to-do-list-item');
   let changeItems = Array.from(itemToDo);
   console.log(changeItems);
   const doneTasks = changeItems.filter((item) => item.firstElementChild.classList.value.includes('task-done'));
-  const undoneTasks = changeItems.filter((item) => item.firstElementChild.classList.value.includes('task-done'));
+  const undoneTasks = changeItems.filter((item) => !item.firstElementChild.classList.value.includes('task-done'));
+  const lastUndone = undoneTasks.pop();
+  undoneTasks.unshift(lastUndone);
+  console.log(lastUndone);
+  console.log('undone', undoneTasks);
+  // const upsideDownUndone = undoneTasks.reverse();
+  // console.log('upside', upsideDownUndone);
   changeItems = undoneTasks.concat(doneTasks);
   console.log('undone', undoneTasks);
   console.log('alltask', allTasksToDo);
@@ -139,11 +136,9 @@ function sortTasks() {
 
 // Pintar tareas ordenadas
 function displayReorderTasks(changeItems) {
-  
   for (const task of changeItems) {
     toDoList.appendChild(task);
   }
-  
 }
 
 // Listener boton
